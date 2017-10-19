@@ -14,7 +14,8 @@ module.exports = class Environment {
       coinbase: new Address('0x0000000000000000000000000000000000000000'),
       // gas tank
       gasPrice: 0,
-      gasLeft: 1000000,
+      //gasLeft: 1000000,
+      gasLeft: 10000000000,
       gasRefund: 0,
       // call infromation
       address: new Address('0x0000000000000000000000000000000000000000'),

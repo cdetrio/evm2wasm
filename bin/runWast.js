@@ -21,7 +21,7 @@ async function main() {
   const code = Buffer.from(process.argv[2], 'hex')
   console.log('code:', code.toString('hex'))
   const wasmCode = await transcompiler.evm2wasm(code, {
-                      stackTrace: true,
+                      stackTrace: false,
                       inlineOps: true,
                       pprint: false,
                       wabt: true
@@ -40,8 +40,9 @@ function runWasmCode(wasmCode) {
   //const instance = WebAssembly.Instance(mod, {}) //  TypeError: WebAssembly Instantiation: Import #0 module="ethereum" error: module is not an object or function
   const instance = WebAssembly.Instance(mod, wasmImports)
   wasmVm.wasmInstance = instance
-  
+  console.time('wasm-benchmark')
   instance.exports.main()
+  console.timeEnd('wasm-benchmark')
 }
 
 
