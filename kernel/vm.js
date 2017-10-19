@@ -15,7 +15,9 @@ module.exports = class VM {
     // TODO, delete the instance once done.
     const instance = this._instance = WebAssembly.Instance(this._module, imports)
     if (instance.exports.main) {
+      console.time('wasm-benchmark')
       instance.exports.main()
+      console.timeEnd('wasm-benchmark')
     }
     return this.onDone()
   }
